@@ -1,26 +1,15 @@
 import React, { Component } from 'react';
 
 class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.props.value
-    };  
-  }
-  increment = () => {
-    this.setState({value:this.state.value+1})
-  }
-  decrease = () => {
-    this.setState({value:this.state.value-1})
-  }
   render() {
     return (
       <div className="border border-warning rounded">
         <h1>{this.props.name}</h1>
-        <h3 className={(this.state.value===0)?"bg-secondary": (this.state.value>0)?"bg-primary":"bg-danger"}>{(this.state.value===0)?"zero": (this.state.value>0)? "positive":"negative"}</h3>
-        <h1 className="big">{this.state.value}</h1>
-        <button className="btn btn-primary btn-lg m-2" onClick={this.increment}>+</button>
-        <button className="btn btn-danger btn-lg" onClick={this.decrease}>-</button>
+        <h3 className={(this.props.value===0)?"bg-secondary": (this.props.value>0)?"bg-primary":"bg-danger"}>{(this.props.value===0)?"zero": (this.props.value>0)? "positive":"negative"}</h3>
+        <h1 className="big">{this.props.value}</h1>
+        <button className="btn btn-success btn-lg m-2" onClick={()=> this.props.increase(this.props.name)}>+</button>
+        <button className="btn btn-primary btn-lg" onClick={()=> this.props.decrease(this.props.name)}>-</button>
+        <button className="btn btn-danger btn-lg" onClick={()=> this.props.removeJumpstarter(this.props.name)}>delete</button>
       </div>
     );
   }
